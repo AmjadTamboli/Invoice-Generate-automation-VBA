@@ -1,0 +1,42 @@
+Sub MailforCustomer()
+Dim MainWS As Worksheet
+Set MainWS = ThisWorkbook.Sheets("MOCK_DATA")
+Dim MainLR As Long
+MainLR = MainWS.Cells(MainWS.Rows.Count, 1).End(xlUp).Row
+Dim Name As String
+'
+
+Dim a As Long
+For a = 2 To MainLR
+Name = MainWS.Cells(a, "d").Value & MainWS.Cells(a, "b").Value & _
+" " & MainWS.Cells(a, "c").Value
+Email = MainWS.Cells(a, "f").Value
+Dim InvoiceDATE As Date
+InvoiceDATE = MainWS.Cells(a, "g").Value
+Dim FIname  As String
+FIname = Name & " " & InvoiceDATE
+
+Dim Path As String
+Path = "D:\Invoice\" & FIname & ".pdf"
+Dim Outmail As Object
+Dim Outapp As Object
+Set Outapp = CreateObject("outlook.application")
+Set Outmail = Outapp.createitem(0)
+
+With Outmail
+.To = Email
+.cc = "amjadtamboli01@gmail.com"
+.bcc = "amjadtamboli01@gmail.com"
+.Subject = "Product invoice send"
+.body = vbNewLine & vbNewLine & "Dear Customer" & _
+vbNewLine & vbNewLine & "Please find enclosing attachment" & _
+vbNewLine & "Thanks" & vbNewLine & "Amjad Tamboli"
+.attachments.Add Path
+.display
+.send
+End With
+
+
+Next a
+
+End Sub
