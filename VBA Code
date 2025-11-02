@@ -204,7 +204,7 @@ End With
 Dim Path As String
 Dim FIname  As String
 FIname = Name & " " & InvoiceDATE
-Path = "D:\invoivce\" & FIname & ".pdf"
+Path = "D:\invoice\" & FIname & ".pdf"
 With InvoiceWS.PageSetup
 .PrintArea = InvoiceWS.Range("a1", rng2).ADDress
 .FitToPagesTall = 1
