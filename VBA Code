@@ -7,7 +7,7 @@ Dim Name As String
 '
 
 Dim a As Long
-For a = 2 To MainLR
+For a = 2 To 100
 Name = MainWS.Cells(a, "d").Value & MainWS.Cells(a, "b").Value & _
 " " & MainWS.Cells(a, "c").Value
 Email = MainWS.Cells(a, "f").Value
@@ -24,7 +24,7 @@ Set Outapp = CreateObject("outlook.application")
 Set Outmail = Outapp.createitem(0)
 
 With Outmail
-.To = Email
+.to = Email
 .cc = "amjadtamboli01@gmail.com"
 .bcc = "amjadtamboli01@gmail.com"
 .Subject = "Product invoice send"
